@@ -1,4 +1,9 @@
 Mastermind = function(){
+	// Constants
+	var _MATCHES_NONE_ = 0,
+		_MATCHES_PARTIAL_ = 1,
+		_MATCHES_EXACT_ = 2;
+
 	// The colours available to choose from
 	var _colours = ['red','blue','yellow','black','white','green'];
 
@@ -68,8 +73,9 @@ Mastermind = function(){
 	/**
 	 * Find how many exact matches of both colour and placement the player has
 	 * guessed.
-	 * @param codeGuess An array containing the player's guess.
-	 * @returns {Array} An array containing the result of the guess.
+	 * @param  {Array}  codeGuess An array containing the player's guess.
+	 * @return {Object}           An object containing the matches, total of each
+	 *                            colour, and total exact matches found in this turn.
 	 */
 	this.getExactMatches = function(codeGuess){
 		var guessMatches = [],
@@ -82,11 +88,11 @@ Mastermind = function(){
 		 */
 		for (var i=0; i<_numberOfPegs; i++){
 			if (codeGuess[i] === _secretCode[i]){
-				guessMatches[i] = 2;
+				guessMatches[i] = _MATCHES_EXACT_;
 				totalExactMatches++;
 				guessedColourTotals[_secretCode[i]] = this.incrementColourTotal(guessedColourTotals[_secretCode[i]]);
 			} else {
-				guessMatches[i] = 0;				
+				guessMatches[i] = _MATCHES_NONE_;				
 			}
 		}
 
@@ -109,29 +115,29 @@ Mastermind = function(){
 	/**
 	 * Find how many exact matches of both colour and placement the player has
 	 * guessed.
-	 * @param {Object} currentResults Contains the current matches and the total of
-	 *                                each colour found for this turn.
-	 * @param {Array}  codeGuess      An array containing the player's guess.
-	 * @param {Object} colourTotals   An object containing the total of each colour
-	 *                                in the secret code.
-	 * @return {Object} An object containing the matches and total of each colour
-	 *                  found in this turn.
+	 * @param  {Object} currentResults Contains the current matches and the total of
+	 *                                 each colour found for this turn.
+	 * @param  {Array}  codeGuess      An array containing the player's guess.
+	 * @param  {Object} colourTotals   An object containing the total of each colour
+	 *                                 in the secret code.
+	 * @return {Object} An object containing the matches, total of each colour, and
+	 *                  total exact matches found in this turn.
 	 */
 	this.getPartialMatches = function(currentResults, codeGuess, colourTotals){
 		var guessMatches = currentResults.guessMatches,
-			guessedColourTotals = currentResults.colourTotals;
+			guessedColourTotals = currentResults.colourTotals,
+			totalPartialMatches = 0;
 
 		// Loop through the guesses
 		for (var i=0; i<_numberOfPegs; i++){
 			// Only check the guess if it was unsucessful in the previous loop.
-			if (guessMatches[i] === 0){
-				// console.log('second pass','A','i='+i,'_guessResult[i]='+guessResult[i]);
+			if (guessMatches[i] === _MATCHES_NONE_){
 				// Loop through the secret code
 				for (var c=0; c<_numberOfPegs; c++){
-					if (guessMatches[c] === 0 && codeGuess[i] === _secretCode[c] && guessedColourTotals[_secretCode[c]] < colourTotals[_secretCode[c]]){
-						guessMatches[i] = 1;
+					if (guessMatches[c] === _MATCHES_NONE_ && codeGuess[i] === _secretCode[c] && guessedColourTotals[_secretCode[c]] < colourTotals[_secretCode[c]]){
+						guessMatches[i] = _MATCHES_PARTIAL_;
+						totalPartialMatches++;
 						guessedColourTotals[_secretCode[c]] = this.incrementColourTotal(guessedColourTotals[_secretCode[c]]);
-						// console.log('second pass','B','i='+i,'c='+c,'codeGuess[i]='+codeGuess[i],'_secretCode[c]='+_secretCode[c],'guessResult[i]='+guessMatches[i]);
 						break;
 					}
 				}
@@ -141,7 +147,8 @@ Mastermind = function(){
 		return {
 			guessMatches: guessMatches,
 			colourTotals: guessedColourTotals,
-			totalExactMatches: currentResults.totalExactMatches
+			totalExactMatches: currentResults.totalExactMatches,
+			totalPartialMatches: totalPartialMatches
 		};
 	};
 
@@ -155,19 +162,31 @@ Mastermind = function(){
 
 		guessResult = this.getExactMatches(codeGuess);
 
-		guessResult = this.getPartialMatches(guessResult, codeGuess, _colourTotals);
+		if (guessResult.totalExactMatches === _numberOfPegs) {
+			guessResult.winner = true;
+		} else {
+			guessResult = this.getPartialMatches(guessResult, codeGuess, _colourTotals);
 
-		// Tell the player how they did
-		// console.log(guessResult);
-		
-		// Decrease the number of tries left
-		if (--_triesLeft === 0){
-			// Politely let the player know they suck!
-			console.log('Sorry, you lost. Please try again.');
-			// Show them what the code was.
-			_revealCode();
+			// Decrease the number of tries left
+			if (--_triesLeft === 0){
+				// Politely let the player know they suck!
+				console.log('Sorry, you lost. Please try again.');
+				// Show them what the code was.
+				// _revealCode();
+				guessResult.gameOver = true;
+			}
 		}
+
+		return guessResult;
 	}
+
+	/**
+	 * Returns the number of tries the player has left to guess the code.
+	 * @return {Number} The number of tries the player has left.
+	 */
+	this.getTriesLeft = function(){
+		return _triesLeft;
+	};
 
 	/**
 	 * Start the game!
@@ -180,4 +199,4 @@ Mastermind = function(){
 
 		_colourTotals = this.getColourTotals(_secretCode);
 	}
-}
+};
