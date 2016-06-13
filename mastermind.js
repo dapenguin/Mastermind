@@ -8,9 +8,6 @@ Mastermind = function(){
 	var _colours = ['red','blue','yellow','black','white','green'];
 
 	// The code the player has to crack
-	var _playerName = 'Anthony';
-
-	// The code the player has to crack
 	var _secretCode = [];
 
 	// Maximum number of tries
