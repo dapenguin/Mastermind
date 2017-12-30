@@ -1,29 +1,29 @@
 const Mastermind = function(){
 	// Constants
-	var _MATCHES_NONE_ = 0,
-		_MATCHES_PARTIAL_ = 1,
-		_MATCHES_EXACT_ = 2;
+	const _MATCHES_NONE_ = 0;
+	const _MATCHES_PARTIAL_ = 1;
+	const _MATCHES_EXACT_ = 2;
 
 	// The colours available to choose from
-	var _colours = ['red','blue','yellow','black','white','green'];
+	const _colours = ['red','blue','yellow','black','white','green'];
 
 	// The code the player has to crack
-	var _secretCode = [];
+	let _secretCode = [];
 
 	// Maximum number of tries
-	var _maxTries = 12;
+	const _maxTries = 12;
 
 	// Number of tries left
-	var _triesLeft = 0;
+	let _triesLeft = 0;
 
 	// The number of pegs that make up the code
-	var _numberOfPegs = 4;
+	const _numberOfPegs = 4;
 
 	// The number of colours that can be chosen from
-	var _numberOfColours = 6;
+	const _numberOfColours = 6;
 
 	// Total number of each colour in the secret code
-	var _colourTotals = {};
+	let _colourTotals = {};
 
 	/**
 	 * Manually set the secret answer. Used for debugging.
@@ -37,8 +37,8 @@ const Mastermind = function(){
 	 * Randomly generates the code.
 	 * @private
 	 */
-	var _generateCode = function(){
-		for (var i=0; i<_numberOfPegs; i++){
+	const _generateCode = function(){
+		for (let i=0; i<_numberOfPegs; i++){
 			_secretCode[i] = Math.floor(Math.random() * _numberOfColours);
 		}
 	};
@@ -47,8 +47,8 @@ const Mastermind = function(){
 	 * Reveals the code.
 	 * @private
 	 */
-	var _revealCode = function(){
-		for (var i=0; i<_numberOfPegs; i++){
+	const _revealCode = function(){
+		for (let i=0; i<_numberOfPegs; i++){
 			console.log(_colours[_secretCode[i]]);
 		}
 	};
@@ -61,9 +61,9 @@ const Mastermind = function(){
 	 *                  the secret code.
 	 */
 	this.getColourTotals = function(secretCode){
-		var colourTotals = {};
+		const colourTotals = {};
 
-		for (var i=0; i<_numberOfPegs; i++){
+		for (let i=0; i<_numberOfPegs; i++){
 			colourTotals[secretCode[i]] = this.incrementColourTotal(colourTotals[secretCode[i]]);
 		}
 
@@ -78,15 +78,15 @@ const Mastermind = function(){
 	 *                            colour, and total exact matches found in this turn.
 	 */
 	this.getExactMatches = function(codeGuess){
-		var guessMatches = [],
-			guessedColourTotals = {},
-			totalExactMatches = 0;
+		const guessMatches = [];
+		const guessedColourTotals = {};
+		let totalExactMatches = 0;
 
 		/**
 		 * Loop through the secret code and the player's guess to find out how many
 		 * of the pegs match perfectly.
 		 */
-		for (var i=0; i<_numberOfPegs; i++){
+		for (let i=0; i<_numberOfPegs; i++){
 			if (codeGuess[i] === _secretCode[i]){
 				guessMatches[i] = _MATCHES_EXACT_;
 				totalExactMatches++;
@@ -124,16 +124,16 @@ const Mastermind = function(){
 	 *                  total exact matches found in this turn.
 	 */
 	this.getPartialMatches = function(currentResults, codeGuess, colourTotals){
-		var guessMatches = currentResults.guessMatches,
-			guessedColourTotals = currentResults.colourTotals,
-			totalPartialMatches = 0;
+		const guessMatches = currentResults.guessMatches;
+		const guessedColourTotals = currentResults.colourTotals;
+		let totalPartialMatches = 0;
 
 		// Loop through the guesses
-		for (var i=0; i<_numberOfPegs; i++){
+		for (let i=0; i<_numberOfPegs; i++){
 			// Only check the guess if it was unsucessful in the previous loop.
 			if (guessMatches[i] === _MATCHES_NONE_){
 				// Loop through the secret code
-				for (var c=0; c<_numberOfPegs; c++){
+				for (let c=0; c<_numberOfPegs; c++){
 					if (guessMatches[c] === _MATCHES_NONE_ && codeGuess[i] === _secretCode[c] && guessedColourTotals[_secretCode[c]] < colourTotals[_secretCode[c]]){
 						guessMatches[i] = _MATCHES_PARTIAL_;
 						totalPartialMatches++;
@@ -158,9 +158,7 @@ const Mastermind = function(){
 	 */
 	this.guess = function(codeGuess){
 		// Contains the result of the player's guess
-		var guessResult = {};
-
-		guessResult = this.getExactMatches(codeGuess);
+		let guessResult = this.getExactMatches(codeGuess);
 
 		if (guessResult.totalExactMatches === _numberOfPegs) {
 			guessResult.winner = true;

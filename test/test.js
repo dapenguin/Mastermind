@@ -4,8 +4,8 @@ const Mastermind = require('../mastermind');
 const mm = new Mastermind();
 
 describe('A game where the chosen code is: white, blue, white, blue', function() {
-	var secretCode = ['white','blue','white','blue'],
-		colourTotals = mm.getColourTotals(secretCode);
+	const secretCode = ['white','blue','white','blue'];
+	const colourTotals = mm.getColourTotals(secretCode);
 
 	mm.setSecretCode(secretCode);
 
@@ -14,10 +14,10 @@ describe('A game where the chosen code is: white, blue, white, blue', function()
 	});
 
 	describe('Player guesses: white, red, red, white', function() {
-		var playerGuess = ['white','red','red','white'];
+		const playerGuess = ['white','red','red','white'];
 
 		describe('Find exact matches', function() {
-			var exactMatchResults = mm.getExactMatches(playerGuess);
+			const exactMatchResults = mm.getExactMatches(playerGuess);
 
 			it('should mark the first peg as an exact match', function() {
 				expect(exactMatchResults.guessMatches).to.deep.equal([2, 0, 0, 0]);
@@ -33,8 +33,8 @@ describe('A game where the chosen code is: white, blue, white, blue', function()
 		});
 
 		describe('Find exact matches and partial matches', function() {
-			var exactMatchResults = mm.getExactMatches(playerGuess),
-				partialMatchResults = mm.getPartialMatches(exactMatchResults, playerGuess, colourTotals);
+			const exactMatchResults = mm.getExactMatches(playerGuess);
+			const partialMatchResults = mm.getPartialMatches(exactMatchResults, playerGuess, colourTotals);
 
 			it('should mark the fourth peg as a partial match', function() {
 				expect(partialMatchResults.guessMatches).to.deep.equal([2, 0, 0, 1]);
@@ -55,10 +55,10 @@ describe('A game where the chosen code is: white, blue, white, blue', function()
 	});
 
 	describe('Player guesses: white, white, red, white', function() {
-		var playerGuess = ['white','white','red','white'];
+		const playerGuess = ['white','white','red','white'];
 
 		describe('Find exact matches', function() {
-			var exactMatchResults = mm.getExactMatches(playerGuess);
+			const exactMatchResults = mm.getExactMatches(playerGuess);
 
 			it('should mark the first peg as an exact match', function() {
 				expect(exactMatchResults.guessMatches).to.deep.equal([2, 0, 0, 0]);
@@ -74,8 +74,8 @@ describe('A game where the chosen code is: white, blue, white, blue', function()
 		});
 
 		describe('Find exact matches and partial matches', function() {
-			var exactMatchResults = mm.getExactMatches(playerGuess),
-				partialMatchResults = mm.getPartialMatches(exactMatchResults, playerGuess, colourTotals);
+			const exactMatchResults = mm.getExactMatches(playerGuess);
+			const partialMatchResults = mm.getPartialMatches(exactMatchResults, playerGuess, colourTotals);
 
 			it('should mark the second peg as a partial match', function() {
 				expect(partialMatchResults.guessMatches).to.deep.equal([2, 1, 0, 0]);
@@ -96,10 +96,10 @@ describe('A game where the chosen code is: white, blue, white, blue', function()
 	});
 
 	describe('Player guesses: white, white, white, white', function() {
-		var playerGuess = ['white','white','white','white'];
+		const playerGuess = ['white','white','white','white'];
 
 		describe('Find exact matches', function() {
-			var exactMatchResults = mm.getExactMatches(playerGuess);
+			const exactMatchResults = mm.getExactMatches(playerGuess);
 
 			it('should mark the first peg as an exact match', function() {
 				expect(exactMatchResults.guessMatches).to.deep.equal([2, 0, 2, 0]);
@@ -115,8 +115,8 @@ describe('A game where the chosen code is: white, blue, white, blue', function()
 		});
 
 		describe('Find exact matches and partial matches', function() {
-			var exactMatchResults = mm.getExactMatches(playerGuess),
-				partialMatchResults = mm.getPartialMatches(exactMatchResults, playerGuess, colourTotals);
+			const exactMatchResults = mm.getExactMatches(playerGuess);
+			const partialMatchResults = mm.getPartialMatches(exactMatchResults, playerGuess, colourTotals);
 
 			it('should not mark any pegs as a partial matches', function() {
 				expect(partialMatchResults.guessMatches).to.deep.equal([2, 0, 2, 0]);
