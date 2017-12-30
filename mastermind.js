@@ -1,4 +1,4 @@
-Mastermind = function(){
+const Mastermind = function(){
 	// Constants
 	var _MATCHES_NONE_ = 0,
 		_MATCHES_PARTIAL_ = 1,
@@ -18,7 +18,7 @@ Mastermind = function(){
 
 	// The number of pegs that make up the code
 	var _numberOfPegs = 4;
-	
+
 	// The number of colours that can be chosen from
 	var _numberOfColours = 6;
 
@@ -31,8 +31,8 @@ Mastermind = function(){
 	 */
 	this.setSecretCode = function(secretCode){
 		_secretCode = secretCode;
-	}
-	
+	};
+
 	/**
 	 * Randomly generates the code.
 	 * @private
@@ -41,7 +41,7 @@ Mastermind = function(){
 		for (var i=0; i<_numberOfPegs; i++){
 			_secretCode[i] = Math.floor(Math.random() * _numberOfColours);
 		}
-	}
+	};
 
 	/**
 	 * Reveals the code.
@@ -92,7 +92,7 @@ Mastermind = function(){
 				totalExactMatches++;
 				guessedColourTotals[_secretCode[i]] = this.incrementColourTotal(guessedColourTotals[_secretCode[i]]);
 			} else {
-				guessMatches[i] = _MATCHES_NONE_;				
+				guessMatches[i] = _MATCHES_NONE_;
 			}
 		}
 
@@ -178,7 +178,7 @@ Mastermind = function(){
 		}
 
 		return guessResult;
-	}
+	};
 
 	/**
 	 * Returns the number of tries the player has left to guess the code.
@@ -198,5 +198,7 @@ Mastermind = function(){
 		_generateCode();
 
 		_colourTotals = this.getColourTotals(_secretCode);
-	}
+	};
 };
+
+module.exports = Mastermind;
