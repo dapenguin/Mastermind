@@ -113,19 +113,18 @@ const Mastermind = function(){
 	};
 
 	/**
-	 * Find how many exact matches of both colour and placement the player has
-	 * guessed.
-	 * @param  {Object} currentResults Contains the current matches and the total of
-	 *                                 each colour found for this turn.
-	 * @param  {Array}  codeGuess      An array containing the player's guess.
-	 * @param  {Object} colourTotals   An object containing the total of each colour
-	 *                                 in the secret code.
-	 * @return {Object} An object containing the matches, total of each colour, and
-	 *                  total exact matches found in this turn.
+	 * Find how many matches of colour, but not placement the player has guessed.
+	 * @param  {Object} exactMatchResults Contains the exact matches and the total of
+	 *                                    each colour found for this turn.
+	 * @param  {Array}  codeGuess         An array containing the player's guess.
+	 * @param  {Object} colourTotals      An object containing the total of each colour
+	 *                                    in the secret code.
+	 * @return {Object} An object containing the matches, total of each colour, total
+	 *                  exact matches, and total partial matches found in this turn.
 	 */
-	this.getPartialMatches = function(currentResults, codeGuess, colourTotals){
-		const guessMatches = currentResults.guessMatches;
-		const guessedColourTotals = currentResults.colourTotals;
+	this.getPartialMatches = function(exactMatchResults, codeGuess, colourTotals){
+		const guessMatches = exactMatchResults.guessMatches;
+		const guessedColourTotals = exactMatchResults.colourTotals;
 		let totalPartialMatches = 0;
 
 		// Loop through the guesses
@@ -147,7 +146,7 @@ const Mastermind = function(){
 		return {
 			guessMatches: guessMatches,
 			colourTotals: guessedColourTotals,
-			totalExactMatches: currentResults.totalExactMatches,
+			totalExactMatches: exactMatchResults.totalExactMatches,
 			totalPartialMatches: totalPartialMatches
 		};
 	};
@@ -155,6 +154,7 @@ const Mastermind = function(){
 	/**
 	 * Process the player's guess.
 	 * @param codeGuess An array containing the player's guess.
+	 * @returns {Object} Object containing the results of the player's guess.
 	 */
 	this.guess = function(codeGuess){
 		// Contains the result of the player's guess
