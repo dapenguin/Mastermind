@@ -1,4 +1,4 @@
-const Mastermind = function(){
+const Mastermind = function() {
 	// Constants
 	const _MATCHES_NONE_ = 0;
 	const _MATCHES_PARTIAL_ = 1;
@@ -29,7 +29,7 @@ const Mastermind = function(){
 	 * Manually set the secret answer. Used for debugging.
 	 * @param {Array} secretCode An array containing the secret code.
 	 */
-	this.setSecretCode = function(secretCode){
+	this.setSecretCode = (secretCode) => {
 		_secretCode = secretCode;
 	};
 
@@ -37,7 +37,7 @@ const Mastermind = function(){
 	 * Randomly generates the code.
 	 * @private
 	 */
-	const _generateCode = function(){
+	const _generateCode = () => {
 		for (let i=0; i<_numberOfPegs; i++){
 			_secretCode[i] = Math.floor(Math.random() * _numberOfColours);
 		}
@@ -47,7 +47,7 @@ const Mastermind = function(){
 	 * Reveals the code.
 	 * @private
 	 */
-	const _revealCode = function(){
+	const _revealCode = () => {
 		for (let i=0; i<_numberOfPegs; i++){
 			console.log(_colours[_secretCode[i]]);
 		}
@@ -60,7 +60,7 @@ const Mastermind = function(){
 	 * @return {Object} Object containing the total number of each colour in
 	 *                  the secret code.
 	 */
-	this.getColourTotals = function(secretCode){
+	this.getColourTotals = (secretCode) => {
 		const colourTotals = {};
 
 		for (let i=0; i<_numberOfPegs; i++){
@@ -77,7 +77,7 @@ const Mastermind = function(){
 	 * @return {Object}           An object containing the matches, total of each
 	 *                            colour, and total exact matches found in this turn.
 	 */
-	this.getExactMatches = function(codeGuess){
+	this.getExactMatches = (codeGuess) => {
 		const guessMatches = [];
 		const guessedColourTotals = {};
 		let totalExactMatches = 0;
@@ -108,7 +108,7 @@ const Mastermind = function(){
 	 * @param  {Number} currentColourTotal The current colour total.
 	 * @return {Number}                    The new colour total.
 	 */
-	this.incrementColourTotal = function(currentColourTotal){
+	this.incrementColourTotal = (currentColourTotal) => {
 		return (typeof currentColourTotal === 'undefined') ? 1 : currentColourTotal+1;
 	};
 
@@ -122,7 +122,7 @@ const Mastermind = function(){
 	 * @return {Object} An object containing the matches, total of each colour, total
 	 *                  exact matches, and total partial matches found in this turn.
 	 */
-	this.getPartialMatches = function(exactMatchResults, codeGuess, colourTotals){
+	this.getPartialMatches = (exactMatchResults, codeGuess, colourTotals) => {
 		const guessMatches = exactMatchResults.guessMatches;
 		const guessedColourTotals = exactMatchResults.colourTotals;
 		let totalPartialMatches = 0;
@@ -156,7 +156,7 @@ const Mastermind = function(){
 	 * @param codeGuess An array containing the player's guess.
 	 * @returns {Object} Object containing the results of the player's guess.
 	 */
-	this.guess = function(codeGuess){
+	this.guess = (codeGuess) => {
 		// Contains the result of the player's guess
 		let guessResult = this.getExactMatches(codeGuess);
 
@@ -182,14 +182,14 @@ const Mastermind = function(){
 	 * Returns the number of tries the player has left to guess the code.
 	 * @return {Number} The number of tries the player has left.
 	 */
-	this.getTriesLeft = function(){
+	this.getTriesLeft = () => {
 		return _triesLeft;
 	};
 
 	/**
 	 * Start the game!
 	 */
-	this.start = function(){
+	this.start = () => {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
