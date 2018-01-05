@@ -34,13 +34,29 @@ const Mastermind = function() {
 	};
 
 	/**
-	 * Randomly generates the code.
+	 * Get the secret code. Useful for telling the player the code if they've lost.
+	 * @returns {Array} The secret code.
+	 */
+	this.getSecretCode = () => {
+		return _secretCode;
+	};
+
+	/**
+	 * Randomly generates and returns a new code.
+	 * @param {Number} numberOfPegs    The number of pegs that make up the code.
+	 * @param {Number} numberOfColours The number of colours used to generate
+	 *                                 the code.
+	 * @returns {Array}
 	 * @private
 	 */
-	const _generateCode = () => {
-		for (let i=0; i<_numberOfPegs; i++){
-			_secretCode[i] = Math.floor(Math.random() * _numberOfColours);
+	const _generateCode = (numberOfPegs, numberOfColours) => {
+		const code = [];
+
+		for (let i = 0; i < numberOfPegs; i++){
+			code[i] = Math.floor(Math.random() * numberOfColours);
 		}
+
+		return code;
 	};
 
 	/**
@@ -193,7 +209,7 @@ const Mastermind = function() {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
-		_generateCode();
+		_secretCode = _generateCode(_numberOfPegs, _numberOfColours);
 
 		_colourTotals = this.getColourTotals(_secretCode);
 	};

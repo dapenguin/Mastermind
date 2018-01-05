@@ -1,9 +1,19 @@
 const { expect } = require('chai');
 
 const Mastermind = require('../mastermind');
-const mm = new Mastermind();
+
+describe('Creating a new game', () => {
+	const mm = new Mastermind();
+	mm.start();
+
+	it('should generate a code consisting of 4 pegs', () => {
+		const code = mm.getSecretCode();
+		expect(code.length).to.equal(4);
+	});
+});
 
 describe('A game where the chosen code is: white, blue, white, blue', () => {
+	const mm = new Mastermind();
 	const secretCode = ['white','blue','white','blue'];
 	const colourTotals = mm.getColourTotals(secretCode);
 
