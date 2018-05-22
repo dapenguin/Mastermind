@@ -1,3 +1,5 @@
+const incrementColourTotal = require('./lib/incrementColourTotal');
+
 const Mastermind = function() {
 	// Constants
 	const _MATCHES_NONE_ = 0;
@@ -80,7 +82,7 @@ const Mastermind = function() {
 		const colourTotals = {};
 
 		for (let i=0; i<_numberOfPegs; i++){
-			colourTotals[secretCode[i]] = this.incrementColourTotal(colourTotals[secretCode[i]]);
+			colourTotals[secretCode[i]] = incrementColourTotal(colourTotals[secretCode[i]]);
 		}
 
 		return colourTotals;
@@ -106,7 +108,7 @@ const Mastermind = function() {
 			if (codeGuess[i] === _secretCode[i]){
 				guessMatches[i] = _MATCHES_EXACT_;
 				totalExactMatches++;
-				guessedColourTotals[_secretCode[i]] = this.incrementColourTotal(guessedColourTotals[_secretCode[i]]);
+				guessedColourTotals[_secretCode[i]] = incrementColourTotal(guessedColourTotals[_secretCode[i]]);
 			} else {
 				guessMatches[i] = _MATCHES_NONE_;
 			}
@@ -117,15 +119,6 @@ const Mastermind = function() {
 			colourTotals: guessedColourTotals,
 			totalExactMatches: totalExactMatches
 		};
-	};
-
-	/**
-	 * Takes a colour total and increments it by 1.
-	 * @param  {Number} currentColourTotal The current colour total.
-	 * @return {Number}                    The new colour total.
-	 */
-	this.incrementColourTotal = (currentColourTotal) => {
-		return (typeof currentColourTotal === 'undefined') ? 1 : currentColourTotal+1;
 	};
 
 	/**
@@ -152,7 +145,7 @@ const Mastermind = function() {
 					if (guessMatches[c] === _MATCHES_NONE_ && codeGuess[i] === _secretCode[c] && guessedColourTotals[_secretCode[c]] < colourTotals[_secretCode[c]]){
 						guessMatches[i] = _MATCHES_PARTIAL_;
 						totalPartialMatches++;
-						guessedColourTotals[_secretCode[c]] = this.incrementColourTotal(guessedColourTotals[_secretCode[c]]);
+						guessedColourTotals[_secretCode[c]] = incrementColourTotal(guessedColourTotals[_secretCode[c]]);
 						break;
 					}
 				}
