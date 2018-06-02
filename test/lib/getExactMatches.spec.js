@@ -18,13 +18,15 @@ describe('getExactMatches()', () => {
 		expect(exactMatchResults.guessMatches[3]).to.equal(0);
 	});
 
-	it('should return how many of each colour were exact matches', () => {
+	it('should return how many of each colour in the code were exact matches', () => {
 		expect(exactMatchResults).to.have.property('colourTotals');
 		expect(exactMatchResults.colourTotals).to.be.an('object');
 		expect(exactMatchResults.colourTotals).to.have.property('white');
 		expect(exactMatchResults.colourTotals.white).to.equal(1);
 		expect(exactMatchResults.colourTotals).to.have.property('red');
-		expect(exactMatchResults.colourTotals.white).to.equal(1);
+		expect(exactMatchResults.colourTotals.red).to.equal(1);
+		expect(exactMatchResults.colourTotals).to.have.property('blue');
+		expect(exactMatchResults.colourTotals.blue).to.equal(0);
 	});
 
 	it('should return the total number of exact matches', () => {
