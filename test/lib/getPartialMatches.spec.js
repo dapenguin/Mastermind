@@ -55,7 +55,7 @@ describe('getPartialMatches()', () => {
 	});
 
 	it('should return the total number of partial matches', () => {
-		expect(partialMatchResults).to.have.property('totalExactMatches');
+		expect(partialMatchResults).to.have.property('totalPartialMatches');
 		expect(partialMatchResults.totalPartialMatches).to.be.a('number');
 		expect(partialMatchResults.totalPartialMatches).to.equal(2);
 	});
