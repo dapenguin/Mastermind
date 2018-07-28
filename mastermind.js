@@ -1,3 +1,4 @@
+const generateCode = require('./lib/generateCode');
 const getGuessResult = require('./lib/getGuessResult');
 const incrementColourTotal = require('./lib/incrementColourTotal');
 
@@ -37,24 +38,6 @@ const Mastermind = function() {
 	 */
 	this.getSecretCode = () => {
 		return _secretCode;
-	};
-
-	/**
-	 * Randomly generates and returns a new code.
-	 * @param {Number} numberOfPegs    The number of pegs that make up the code.
-	 * @param {Number} numberOfColours The number of colours used to generate
-	 *                                 the code.
-	 * @returns {Array}
-	 * @private
-	 */
-	const _generateCode = (numberOfPegs, numberOfColours) => {
-		const code = [];
-
-		for (let i = 0; i < numberOfPegs; i++){
-			code[i] = Math.floor(Math.random() * numberOfColours);
-		}
-
-		return code;
 	};
 
 	/**
@@ -111,7 +94,7 @@ const Mastermind = function() {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
-		_secretCode = _generateCode(_numberOfPegs, _numberOfColours);
+		_secretCode = generateCode(_numberOfPegs, _numberOfColours);
 
 		_colourTotals = this.getColourTotals(_secretCode);
 	};
