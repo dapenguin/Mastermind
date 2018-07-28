@@ -36,9 +36,7 @@ const Mastermind = function() {
 	 * Get the secret code. Useful for telling the player the code if they've lost.
 	 * @returns {Array} The secret code.
 	 */
-	this.getSecretCode = () => {
-		return _secretCode;
-	};
+	this.getSecretCode = () => _secretCode;
 
 	/**
 	 * Reveals the code.
@@ -83,9 +81,7 @@ const Mastermind = function() {
 	 * Returns the number of tries the player has left to guess the code.
 	 * @return {Number} The number of tries the player has left.
 	 */
-	this.getTriesLeft = () => {
-		return _triesLeft;
-	};
+	this.getTriesLeft = () => _triesLeft;
 
 	/**
 	 * Start the game!
