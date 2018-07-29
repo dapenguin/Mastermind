@@ -3,9 +3,6 @@ const generateCode = require('./lib/generateCode');
 const getGuessResult = require('./lib/getGuessResult');
 
 const Mastermind = function() {
-	// The colours available to choose from
-	const _colours = ['red','blue','yellow','black','white','green'];
-
 	// The code the player has to crack
 	let _secretCode = [];
 
@@ -37,16 +34,6 @@ const Mastermind = function() {
 	 * @returns {Array} The secret code.
 	 */
 	this.getSecretCode = () => _secretCode;
-
-	/**
-	 * Reveals the code.
-	 * @private
-	 */
-	const _revealCode = () => {
-		for (let i=0; i<_numberOfPegs; i++){
-			console.log(_colours[_secretCode[i]]);
-		}
-	};
 
 	/**
 	 * Process the player's guess.
