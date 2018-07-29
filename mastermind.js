@@ -15,8 +15,8 @@ const Mastermind = function() {
 	// The number of pegs that make up the code
 	const _numberOfPegs = 4;
 
-	// The number of colours that can be chosen from
-	const _numberOfColours = 6;
+	// The maximum zero based value that can be given to a peg
+	const _maxPegValue = 5;
 
 	// Total number of each colour in the secret code
 	let _colourTotals = {};
@@ -55,7 +55,7 @@ const Mastermind = function() {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
-		_secretCode = secretCode || generateCode(_numberOfPegs, _numberOfColours);
+		_secretCode = secretCode || generateCode(_numberOfPegs, _maxPegValue);
 
 		_colourTotals = getColourTotals(_secretCode, _numberOfPegs);
 	};
