@@ -57,7 +57,7 @@ const Mastermind = function() {
 		// Generate the secret code
 		_secretCode = secretCode || generateCode(_numberOfPegs, _numberOfColours);
 
-		_colourTotals = getColourTotals(_secretCode);
+		_colourTotals = getColourTotals(_secretCode, _numberOfPegs);
 	};
 };
 
