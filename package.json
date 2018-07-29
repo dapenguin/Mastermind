@@ -1,7 +1,7 @@
 {
   "name": "mastermind",
   "version": "0.1.0",
-  "description": "Recreation of Mastermind board game",
+  "description": "API for the Mastermind board game",
   "main": "mastermind.js",
   "scripts": {
     "test": "mocha --recursive"
