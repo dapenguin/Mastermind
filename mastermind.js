@@ -1,6 +1,6 @@
+const getColourTotals = require('./lib/getColourTotals');
 const generateCode = require('./lib/generateCode');
 const getGuessResult = require('./lib/getGuessResult');
-const incrementColourTotal = require('./lib/incrementColourTotal');
 
 const Mastermind = function() {
 	// The colours available to choose from
@@ -49,23 +49,6 @@ const Mastermind = function() {
 	};
 
 	/**
-	 * Takes the secret code and creates an object containing the total number
-	 * of each colour in the secret code.
-	 * @param  {Array}  secretCode An array containing the secret code.
-	 * @return {Object} Object containing the total number of each colour in
-	 *                  the secret code.
-	 */
-	this.getColourTotals = (secretCode) => {
-		const colourTotals = {};
-
-		for (let i=0; i<_numberOfPegs; i++){
-			colourTotals[secretCode[i]] = incrementColourTotal(colourTotals[secretCode[i]]);
-		}
-
-		return colourTotals;
-	};
-
-	/**
 	 * Process the player's guess.
 	 * @param codeGuess An array containing the player's guess.
 	 * @returns {Object} Object containing the results of the player's guess.
@@ -92,7 +75,7 @@ const Mastermind = function() {
 		// Generate the secret code
 		_secretCode = generateCode(_numberOfPegs, _numberOfColours);
 
-		_colourTotals = this.getColourTotals(_secretCode);
+		_colourTotals = getColourTotals(_secretCode);
 	};
 };
 
