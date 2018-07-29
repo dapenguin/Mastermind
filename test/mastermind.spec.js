@@ -34,6 +34,7 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 	describe('Player guesses: white, red, red, white', () => {
 		const playerGuess = ['white','red','red','white'];
 		const guessResults = mm.guess(playerGuess);
+		const triesLeft = mm.getTriesLeft();
 
 		it('should find a total of 1 exact match', () => {
 			expect(guessResults.totalExactMatches).to.equal(1);
@@ -41,12 +42,17 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 
 		it('should find a total of 1 partial match', () => {
 			expect(guessResults.totalPartialMatches).to.equal(1);
+		});
+
+		it('should set the number of tries left to 11', () => {
+			expect(triesLeft).to.equal(11);
 		});
 	});
 
 	describe('Player guesses: white, white, red, white', () => {
 		const playerGuess = ['white','white','red','white'];
 		const guessResults = mm.guess(playerGuess);
+		const triesLeft = mm.getTriesLeft();
 
 		it('should find a total of 1 exact match', () => {
 			expect(guessResults.totalExactMatches).to.equal(1);
@@ -55,11 +61,16 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 		it('should find a total of 1 partial match', () => {
 			expect(guessResults.totalPartialMatches).to.equal(1);
 		});
+
+		it('should set the number of tries left to 10', () => {
+			expect(triesLeft).to.equal(10);
+		});
 	});
 
 	describe('Player guesses: white, white, white, white', () => {
 		const playerGuess = ['white','white','white','white'];
 		const guessResults = mm.guess(playerGuess);
+		const triesLeft = mm.getTriesLeft();
 
 		it('should find a total of 2 exact match', () => {
 			expect(guessResults.totalExactMatches).to.equal(2);
@@ -67,6 +78,10 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 
 		it('should find a total of 0 partial match', () => {
 			expect(guessResults.totalPartialMatches).to.equal(0);
+		});
+
+		it('should set the number of tries left to 9', () => {
+			expect(triesLeft).to.equal(9);
 		});
 	});
 });
