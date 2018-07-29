@@ -22,14 +22,6 @@ const Mastermind = function() {
 	let _colourTotals = {};
 
 	/**
-	 * Manually set the secret answer. Used for debugging.
-	 * @param {Array} secretCode An array containing the secret code.
-	 */
-	this.setSecretCode = (secretCode) => {
-		_secretCode = secretCode;
-	};
-
-	/**
 	 * Get the secret code. Useful for telling the player the code if they've lost.
 	 * @returns {Array} The secret code.
 	 */
@@ -55,12 +47,15 @@ const Mastermind = function() {
 
 	/**
 	 * Start the game!
+	 * @param {Array} secretCode The secret code to play the game with. Mainly used
+	 *                           for debugging. If no secret code is provided, one
+	 *                           will be generated.
 	 */
-	this.start = () => {
+	this.start = (secretCode) => {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
-		_secretCode = generateCode(_numberOfPegs, _numberOfColours);
+		_secretCode = secretCode || generateCode(_numberOfPegs, _numberOfColours);
 
 		_colourTotals = getColourTotals(_secretCode);
 	};
