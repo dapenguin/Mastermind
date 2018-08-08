@@ -2,17 +2,16 @@ const { expect } = require('chai');
 const getGuessResult = require('../../lib/getGuessResult');
 
 describe('getGuessResult()', () => {
+	const secretCode = [0, 1, 2, 0];
+	const pegValueTotals = {
+		['0']: 2,
+		['1']: 1,
+		['2']: 1
+	};
+
 	describe('when the player is not on their last try', () => {
-		const secretCode = ['red','blue','white','red'];
-		const playerGuess = ['green','red','white','blue'];
-		const pegValueTotals = {
-			red: 2,
-			blue: 1,
-			white: 1
-		};
-
+		const playerGuess = [3, 0, 2, 1];
 		const triesLeft = 2;
-
 		const guessResults = getGuessResult(playerGuess, 4, secretCode, pegValueTotals, triesLeft);
 
 		it('should return the total number of exact matches', () => {
@@ -29,16 +28,8 @@ describe('getGuessResult()', () => {
 	});
 
 	describe('when the player is on their last try and guesses incorrectly', () => {
-		const secretCode = ['red','blue','white','red'];
-		const playerGuess = ['green','red','white','blue'];
-		const pegValueTotals = {
-			red: 2,
-			blue: 1,
-			white: 1
-		};
-
+		const playerGuess = [3, 0, 2, 1];
 		const triesLeft = 0;
-
 		const guessResults = getGuessResult(playerGuess, 4, secretCode, pegValueTotals, triesLeft);
 
 		it('should flag the game as being over', () => {
@@ -47,13 +38,7 @@ describe('getGuessResult()', () => {
 	});
 
 	describe('when the player correctly guesses the code', () => {
-		const secretCode = ['red','blue','white','red'];
-		const playerGuess = ['red','blue','white','red'];
-		const pegValueTotals = {
-			red: 2,
-			blue: 1,
-			white: 1
-		};
+		const playerGuess = [0, 1, 2, 0];
 		const triesLeft = 1;
 		const guessResults = getGuessResult(playerGuess, 4, secretCode, pegValueTotals, triesLeft);
 

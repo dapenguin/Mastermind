@@ -2,8 +2,8 @@ const { expect } = require('chai');
 const getExactMatches = require('../../lib/getExactMatches');
 
 describe('getExactMatches()', () => {
-	const secretCode = ['red','blue','white','red'];
-	const playerGuess = ['red','red','white','blue'];
+	const secretCode = [0, 1, 2, 0];
+	const playerGuess = [0, 0, 2, 1];
 	const exactMatchResults = getExactMatches(playerGuess, 4, secretCode);
 
 	it('should return which pegs were exact matches', () => {
@@ -21,12 +21,12 @@ describe('getExactMatches()', () => {
 	it('should return how many of each peg value in the code were exact matches', () => {
 		expect(exactMatchResults).to.have.property('pegValueTotals');
 		expect(exactMatchResults.pegValueTotals).to.be.an('object');
-		expect(exactMatchResults.pegValueTotals).to.have.property('white');
-		expect(exactMatchResults.pegValueTotals.white).to.equal(1);
-		expect(exactMatchResults.pegValueTotals).to.have.property('red');
-		expect(exactMatchResults.pegValueTotals.red).to.equal(1);
-		expect(exactMatchResults.pegValueTotals).to.have.property('blue');
-		expect(exactMatchResults.pegValueTotals.blue).to.equal(0);
+		expect(exactMatchResults.pegValueTotals).to.have.property('2');
+		expect(exactMatchResults.pegValueTotals['2']).to.equal(1);
+		expect(exactMatchResults.pegValueTotals).to.have.property('0');
+		expect(exactMatchResults.pegValueTotals['0']).to.equal(1);
+		expect(exactMatchResults.pegValueTotals).to.have.property('1');
+		expect(exactMatchResults.pegValueTotals['1']).to.equal(0);
 	});
 
 	it('should return the total number of exact matches', () => {

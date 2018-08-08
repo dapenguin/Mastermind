@@ -17,9 +17,9 @@ describe('Creating a new game', () => {
 	});
 });
 
-describe('A game where the provided code is: white, blue, white, blue', () => {
+describe('A game where the provided code is: 2, 1, 2, 1', () => {
 	const mm = new Mastermind();
-	const secretCode = ['white','blue','white','blue'];
+	const secretCode = [2, 1, 2, 1];
 
 	mm.start(secretCode);
 
@@ -31,8 +31,8 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 		});
 	});
 
-	describe('Player guesses: white, red, red, white', () => {
-		const playerGuess = ['white','red','red','white'];
+	describe('Player guesses: 2, 0, 0, 2', () => {
+		const playerGuess = [2, 0, 0, 2];
 		const guessResults = mm.guess(playerGuess);
 		const triesLeft = mm.getTriesLeft();
 
@@ -49,8 +49,8 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 		});
 	});
 
-	describe('Player guesses: white, white, red, white', () => {
-		const playerGuess = ['white','white','red','white'];
+	describe('Player guesses: 2, 2, 0, 2', () => {
+		const playerGuess = [2, 2, 0, 2];
 		const guessResults = mm.guess(playerGuess);
 		const triesLeft = mm.getTriesLeft();
 
@@ -67,8 +67,8 @@ describe('A game where the provided code is: white, blue, white, blue', () => {
 		});
 	});
 
-	describe('Player guesses: white, white, white, white', () => {
-		const playerGuess = ['white','white','white','white'];
+	describe('Player guesses: 2, 2, 2, 2', () => {
+		const playerGuess = [2, 2, 2, 2];
 		const guessResults = mm.guess(playerGuess);
 		const triesLeft = mm.getTriesLeft();
 
