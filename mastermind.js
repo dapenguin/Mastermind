@@ -1,4 +1,4 @@
-const getColourTotals = require('./lib/getColourTotals');
+const getPegValueTotals = require('./lib/getPegValueTotals');
 const generateCode = require('./lib/generateCode');
 const getGuessResult = require('./lib/getGuessResult');
 
@@ -57,7 +57,7 @@ const Mastermind = function() {
 		// Generate the secret code
 		_secretCode = secretCode || generateCode(_numberOfPegs, _maxPegValue);
 
-		_colourTotals = getColourTotals(_secretCode, _numberOfPegs);
+		_colourTotals = getPegValueTotals(_secretCode, _numberOfPegs);
 	};
 };
 

@@ -1,9 +1,9 @@
 const { expect } = require('chai');
-const getColourTotals = require('../../lib/getColourTotals');
+const getPegValueTotals = require('../../lib/getPegValueTotals');
 
-describe('getColourTotals()', () => {
+describe('getPegValueTotals()', () => {
 	const secretCode = ['blue', 'yellow', 'white', 'blue', 'yellow'];
-	const colourTotals = getColourTotals(secretCode, 5);
+	const colourTotals = getPegValueTotals(secretCode, 5);
 
 	it('should return the correct totals for each colour in the secret code', () => {
 		expect(colourTotals).to.have.all.keys('blue', 'white', 'yellow');
