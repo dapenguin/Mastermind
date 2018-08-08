@@ -18,8 +18,8 @@ const Mastermind = function() {
 	// The maximum zero based value that can be given to a peg
 	const _maxPegValue = 5;
 
-	// Total number of each colour in the secret code
-	let _colourTotals = {};
+	// Total number of each peg value in the secret code
+	let _pegValueTotals = {};
 
 	/**
 	 * Get the secret code. Useful for telling the player the code if they've lost.
@@ -34,7 +34,7 @@ const Mastermind = function() {
 	 */
 	this.guess = (codeGuess) => {
 		_triesLeft--;
-		const guessResult = getGuessResult(codeGuess, _numberOfPegs, _secretCode, _colourTotals, _triesLeft);
+		const guessResult = getGuessResult(codeGuess, _numberOfPegs, _secretCode, _pegValueTotals, _triesLeft);
 
 		return guessResult;
 	};
@@ -57,7 +57,7 @@ const Mastermind = function() {
 		// Generate the secret code
 		_secretCode = secretCode || generateCode(_numberOfPegs, _maxPegValue);
 
-		_colourTotals = getPegValueTotals(_secretCode, _numberOfPegs);
+		_pegValueTotals = getPegValueTotals(_secretCode, _numberOfPegs);
 	};
 };
 

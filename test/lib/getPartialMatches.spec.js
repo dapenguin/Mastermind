@@ -7,20 +7,20 @@ describe('getPartialMatches()', () => {
 	const playerGuess = ['green','red','white','blue'];
 	const exactMatchResults = {
 		guessMatches: [0, 0, 2, 0],
-		colourTotals: {
+		pegValueTotals: {
 			red: 0,
 			blue: 0,
 			white: 1
 		},
 		totalExactMatches: 1
 	};
-	const colourTotals = {
+	const pegValueTotals = {
 		red: 2,
 		blue: 1,
 		white: 1
 	};
 
-	const partialMatchResults = getPartialMatches(exactMatchResults, playerGuess, 4, secretCode, colourTotals);
+	const partialMatchResults = getPartialMatches(exactMatchResults, playerGuess, 4, secretCode, pegValueTotals);
 
 	it('should return which pegs were exact matches', () => {
 		expect(partialMatchResults).to.have.property('guessMatches');
@@ -37,15 +37,15 @@ describe('getPartialMatches()', () => {
 		expect(partialMatchResults.guessMatches[0]).to.equal(_MATCHES_NONE_);
 	});
 
-	it('should return how many of each colour were matched', () => {
-		expect(partialMatchResults).to.have.property('colourTotals');
-		expect(partialMatchResults.colourTotals).to.be.an('object');
-		expect(partialMatchResults.colourTotals).to.have.property('white');
-		expect(partialMatchResults.colourTotals.white).to.equal(1);
-		expect(partialMatchResults.colourTotals).to.have.property('red');
-		expect(partialMatchResults.colourTotals.red).to.equal(1);
-		expect(partialMatchResults.colourTotals).to.have.property('blue');
-		expect(partialMatchResults.colourTotals.blue).to.equal(1);
+	it('should return how many of each peg value was matched', () => {
+		expect(partialMatchResults).to.have.property('pegValueTotals');
+		expect(partialMatchResults.pegValueTotals).to.be.an('object');
+		expect(partialMatchResults.pegValueTotals).to.have.property('white');
+		expect(partialMatchResults.pegValueTotals.white).to.equal(1);
+		expect(partialMatchResults.pegValueTotals).to.have.property('red');
+		expect(partialMatchResults.pegValueTotals.red).to.equal(1);
+		expect(partialMatchResults.pegValueTotals).to.have.property('blue');
+		expect(partialMatchResults.pegValueTotals.blue).to.equal(1);
 	});
 
 	it('should return the total number of exact matches', () => {
