@@ -3,11 +3,7 @@ const getGuessResult = require('../../lib/getGuessResult');
 
 describe('getGuessResult()', () => {
 	const secretCode = [0, 1, 2, 0];
-	const pegValueTotals = {
-		['0']: 2,
-		['1']: 1,
-		['2']: 1
-	};
+	const pegValueTotals = [2, 1, 1];
 
 	describe('when the player is not on their last try', () => {
 		const playerGuess = [3, 0, 2, 1];

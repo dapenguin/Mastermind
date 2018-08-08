@@ -7,18 +7,10 @@ describe('getPartialMatches()', () => {
 	const playerGuess = [3, 0, 2, 1];
 	const exactMatchResults = {
 		guessMatches: [0, 0, 2, 0],
-		pegValueTotals: {
-			'0': 0,
-			'1': 0,
-			'2': 1
-		},
+		pegValueTotals: [0, 0, 1],
 		totalExactMatches: 1
 	};
-	const pegValueTotals = {
-		'0': 2,
-		'1': 1,
-		'2': 1
-	};
+	const pegValueTotals = [2, 1, 1];
 
 	const partialMatchResults = getPartialMatches(exactMatchResults, playerGuess, 4, secretCode, pegValueTotals);
 
@@ -39,13 +31,10 @@ describe('getPartialMatches()', () => {
 
 	it('should return how many of each peg value was matched', () => {
 		expect(partialMatchResults).to.have.property('pegValueTotals');
-		expect(partialMatchResults.pegValueTotals).to.be.an('object');
-		expect(partialMatchResults.pegValueTotals).to.have.property('2');
-		expect(partialMatchResults.pegValueTotals['2']).to.equal(1);
-		expect(partialMatchResults.pegValueTotals).to.have.property('0');
-		expect(partialMatchResults.pegValueTotals['0']).to.equal(1);
-		expect(partialMatchResults.pegValueTotals).to.have.property('1');
-		expect(partialMatchResults.pegValueTotals['1']).to.equal(1);
+		expect(partialMatchResults.pegValueTotals).to.be.an('array');
+		expect(partialMatchResults.pegValueTotals[0]).to.equal(1);
+		expect(partialMatchResults.pegValueTotals[1]).to.equal(1);
+		expect(partialMatchResults.pegValueTotals[2]).to.equal(1);
 	});
 
 	it('should return the total number of exact matches', () => {

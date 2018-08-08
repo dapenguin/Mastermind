@@ -20,13 +20,10 @@ describe('getExactMatches()', () => {
 
 	it('should return how many of each peg value in the code were exact matches', () => {
 		expect(exactMatchResults).to.have.property('pegValueTotals');
-		expect(exactMatchResults.pegValueTotals).to.be.an('object');
-		expect(exactMatchResults.pegValueTotals).to.have.property('2');
-		expect(exactMatchResults.pegValueTotals['2']).to.equal(1);
-		expect(exactMatchResults.pegValueTotals).to.have.property('0');
-		expect(exactMatchResults.pegValueTotals['0']).to.equal(1);
-		expect(exactMatchResults.pegValueTotals).to.have.property('1');
-		expect(exactMatchResults.pegValueTotals['1']).to.equal(0);
+		expect(exactMatchResults.pegValueTotals).to.be.an('array');
+		expect(exactMatchResults.pegValueTotals[0]).to.equal(1);
+		expect(exactMatchResults.pegValueTotals[1]).to.equal(0);
+		expect(exactMatchResults.pegValueTotals[2]).to.equal(1);
 	});
 
 	it('should return the total number of exact matches', () => {
