@@ -1,15 +1,15 @@
 const { expect } = require('chai');
-const incrementColourTotal = require('../../lib/incrementColourTotal');
+const incrementPegValueTotal = require('../../lib/incrementPegValueTotal');
 
-describe('incrementColourTotal()', () => {
+describe('incrementPegValueTotal()', () => {
 	it('should increment the given value by 1', () => {
-		const result = incrementColourTotal(2);
+		const result = incrementPegValueTotal(2);
 
 		expect(result).to.equal(3);
 	});
 
 	it('should return 1 if given an undefined value', () => {
-		const result = incrementColourTotal(undefined);
+		const result = incrementPegValueTotal(undefined);
 
 		expect(result).to.equal(1);
 	});
