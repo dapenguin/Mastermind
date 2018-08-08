@@ -1,4 +1,4 @@
-const getColourTotals = require('./lib/getColourTotals');
+const getPegValueTotals = require('./lib/getPegValueTotals');
 const generateCode = require('./lib/generateCode');
 const getGuessResult = require('./lib/getGuessResult');
 
@@ -15,11 +15,11 @@ const Mastermind = function() {
 	// The number of pegs that make up the code
 	const _numberOfPegs = 4;
 
-	// The number of colours that can be chosen from
-	const _numberOfColours = 6;
+	// The maximum zero based value that can be given to a peg
+	const _maxPegValue = 5;
 
-	// Total number of each colour in the secret code
-	let _colourTotals = {};
+	// Total number of each peg value in the secret code
+	let _pegValueTotals = {};
 
 	/**
 	 * Get the secret code. Useful for telling the player the code if they've lost.
@@ -34,7 +34,7 @@ const Mastermind = function() {
 	 */
 	this.guess = (codeGuess) => {
 		_triesLeft--;
-		const guessResult = getGuessResult(codeGuess, _numberOfPegs, _secretCode, _colourTotals, _triesLeft);
+		const guessResult = getGuessResult(codeGuess, _numberOfPegs, _secretCode, _pegValueTotals, _triesLeft);
 
 		return guessResult;
 	};
@@ -55,9 +55,9 @@ const Mastermind = function() {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
-		_secretCode = secretCode || generateCode(_numberOfPegs, _numberOfColours);
+		_secretCode = secretCode || generateCode(_numberOfPegs, _maxPegValue);
 
-		_colourTotals = getColourTotals(_secretCode, _numberOfPegs);
+		_pegValueTotals = getPegValueTotals(_secretCode, _numberOfPegs);
 	};
 };
 
