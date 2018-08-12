@@ -42,7 +42,7 @@ workflows:
   untagged-build:
     jobs:
       - build
-      - test
+      - test:
           requires:
             - build
   tagged-build:
