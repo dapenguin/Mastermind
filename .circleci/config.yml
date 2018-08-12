@@ -34,7 +34,7 @@ jobs:
     <<: *container_config
     steps:
       - attach_workspace:
-          at: ~/root
+          at: ~/repo
       - run: npm test
 
 workflows:
