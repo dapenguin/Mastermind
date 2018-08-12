@@ -32,9 +32,9 @@ jobs:
             - build
   test:
     <<: *container_config
-    attach_workspace:
-      at: ~/root
     steps:
+      attach_workspace:
+        at: ~/root
       - run: npm test
 
 workflows:
