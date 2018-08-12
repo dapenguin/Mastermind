@@ -1,9 +1,10 @@
-version: 2
 references:
   container_config: &container_config
     docker:
       - image: circleci/node:8.4
     working_directory: ~/repo
+
+version: 2
 
 jobs:
   build:
@@ -38,9 +39,9 @@ workflows:
   tagged-build:
     jobs:
       - build:
-        filters:
-          tags:
-            only: /v[0-9]+(\.[0-9]+)*/
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
       - test:
-        requires:
-          - build
+          requires:
+            - build
