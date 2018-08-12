@@ -2,7 +2,7 @@ references:
   container_config: &container_config
     docker:
       - image: circleci/node:8.4
-    working_directory: ~/repo
+    working_directory: ~/repo/build
 
 version: 2
 
@@ -25,8 +25,15 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - build
   test:
     <<: *container_config
+    attach_workspace:
+      at: ~/root
     steps:
       - run: npm test
 
