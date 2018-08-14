@@ -8,12 +8,28 @@ My goal is that once this code is completed, I will create several UIs, each usi
 
 ## How to use
 
-To use this module, import it into your project and create a new instance of the `Mastermind` object:
+To use this module, import it into your project and create a new instance of the `Mastermind` object. Then you can use the [`start()`](#startsecretcode) method to start a new game:
 
 ```javascript
 import Mastermind from 'mastermind'; // NPM module still to be published
 
 const mm = new Mastermind();
+
+mm.start();
+```
+
+Then you can start procesing guesses using the [`guess()`](#guesscodeguess) method. The object returned will tell you how successful the guess was:
+
+```javascript
+const result = mm.guess(playerGuess);
+
+if (result.winner) {
+    console.log('Hooray! You win!!!');
+} else if (result.gameOver) {
+    console.log('Wah! You lost!');
+} else  {
+    console.log(`You found ${result.totalExactMatches} exact matches and ${result.totalPartialMatches} partial matches`);
+}
 ```
 
 ## API
