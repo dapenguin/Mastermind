@@ -29,7 +29,7 @@ const Mastermind = function() {
 
 	/**
 	 * Process the player's guess.
-	 * @param codeGuess An array containing the player's guess.
+	 * @param {Array} codeGuess An array containing the player's guess.
 	 * @returns {Object} Object containing the results of the player's guess.
 	 */
 	this.guess = (codeGuess) => {
