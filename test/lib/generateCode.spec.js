@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const generateCode = require('../../lib/generateCode');
 
 describe('getExactMatches()', () => {
-	const isInteger = num => num % 1 === 0;
+	const isInteger = (num) => num % 1 === 0;
 	const secretCode = generateCode(4, 5);
 
 	it('should return an array with the correct length', () => {

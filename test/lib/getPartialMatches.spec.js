@@ -1,6 +1,10 @@
 const { expect } = require('chai');
 const getPartialMatches = require('../../lib/getPartialMatches');
-const { _MATCHES_NONE_, _MATCHES_PARTIAL_, _MATCHES_EXACT_ } = require('../../lib/constants');
+const {
+	_MATCHES_NONE_,
+	_MATCHES_PARTIAL_,
+	_MATCHES_EXACT_,
+} = require('../../lib/constants');
 
 describe('getPartialMatches()', () => {
 	const secretCode = [0, 1, 2, 0];
@@ -8,11 +12,17 @@ describe('getPartialMatches()', () => {
 	const exactMatchResults = {
 		guessMatches: [0, 0, 2, 0],
 		pegValueTotals: [0, 0, 1],
-		totalExactMatches: 1
+		totalExactMatches: 1,
 	};
 	const pegValueTotals = [2, 1, 1];
 
-	const partialMatchResults = getPartialMatches(exactMatchResults, playerGuess, 4, secretCode, pegValueTotals);
+	const partialMatchResults = getPartialMatches(
+		exactMatchResults,
+		playerGuess,
+		4,
+		secretCode,
+		pegValueTotals
+	);
 
 	it('should return which pegs were exact matches', () => {
 		expect(partialMatchResults).to.have.property('guessMatches');
