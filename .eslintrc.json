@@ -4,20 +4,12 @@
         "es6": true,
         "mocha": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "prettier"
+    ],
+    "plugins": ["prettier"],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
         "no-var": [
             "error"
         ],
@@ -31,6 +23,7 @@
                 "destructuring": "any",
                 "ignoreReadBeforeAssign": false
             }
-        ]
+        ],
+        "prettier/prettier": "error"
     }
 }
