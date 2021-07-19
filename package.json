@@ -4,9 +4,10 @@
   "description": "API for the Mastermind board game",
   "main": "mastermind.js",
   "scripts": {
-    "test": "mocha --recursive",
     "lint": "eslint '**/*/*.{ts,tsx,js}'",
-    "prettier": "prettier --check '**/*/*.{ts,tsx,js}'"
+    "prettier": "prettier --check '**/*/*.{ts,tsx,js}'",
+    "test": "mocha --recursive",
+    "typecheck": "tsc"
   },
   "author": "Anthony Jeffery",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "mocha": "^4.1.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
   }
 }
