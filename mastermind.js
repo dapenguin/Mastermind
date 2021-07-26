@@ -1,8 +1,8 @@
-const getPegValueTotals = require('./lib/getPegValueTotals');
-const generateCode = require('./lib/generateCode');
-const getGuessResult = require('./lib/getGuessResult');
+const { getPegValueTotals } = require('./lib/getPegValueTotals');
+const { generateCode } = require('./lib/generateCode');
+const { getGuessResult } = require('./lib/getGuessResult');
 
-const Mastermind = function() {
+const Mastermind = function () {
 	// The code the player has to crack
 	let _secretCode = [];
 
@@ -34,7 +34,13 @@ const Mastermind = function() {
 	 */
 	this.guess = (codeGuess) => {
 		_triesLeft--;
-		const guessResult = getGuessResult(codeGuess, _numberOfPegs, _secretCode, _pegValueTotals, _triesLeft);
+		const guessResult = getGuessResult(
+			codeGuess,
+			_numberOfPegs,
+			_secretCode,
+			_pegValueTotals,
+			_triesLeft
+		);
 
 		return guessResult;
 	};

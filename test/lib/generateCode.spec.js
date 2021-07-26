@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const generateCode = require('../../lib/generateCode');
+const { generateCode } = require('../../lib/generateCode');
 
 describe('getExactMatches()', () => {
 	const isInteger = (num) => num % 1 === 0;

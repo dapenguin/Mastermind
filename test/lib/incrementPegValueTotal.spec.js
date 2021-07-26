@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const incrementPegValueTotal = require('../../lib/incrementPegValueTotal');
+const { incrementPegValueTotal } = require('../../lib/incrementPegValueTotal');
 
 describe('incrementPegValueTotal()', () => {
 	it('should increment the given value by 1', () => {

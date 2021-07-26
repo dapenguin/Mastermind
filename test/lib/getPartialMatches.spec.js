@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const getPartialMatches = require('../../lib/getPartialMatches');
+const { getPartialMatches } = require('../../lib/getPartialMatches');
 const {
 	_MATCHES_NONE_,
 	_MATCHES_PARTIAL_,

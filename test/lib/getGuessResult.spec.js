@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const getGuessResult = require('../../lib/getGuessResult');
+const { getGuessResult } = require('../../lib/getGuessResult');
 
 describe('getGuessResult()', () => {
 	const secretCode = [0, 1, 2, 0];
