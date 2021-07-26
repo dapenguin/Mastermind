@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const getPegValueTotals = require('../../lib/getPegValueTotals');
+const { getPegValueTotals } = require('../../lib/getPegValueTotals');
 
 describe('getPegValueTotals()', () => {
 	const secretCode = [1, 4, 2, 1, 4];

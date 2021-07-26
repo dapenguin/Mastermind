@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const getExactMatches = require('../../lib/getExactMatches');
+const { getExactMatches } = require('../../lib/getExactMatches');
 
 describe('getExactMatches()', () => {
 	const secretCode = [0, 1, 2, 0];
