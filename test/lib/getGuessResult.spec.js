@@ -1,5 +1,6 @@
-const { expect } = require('chai');
-const { getGuessResult } = require('../../lib/getGuessResult');
+import { expect } from 'chai';
+
+import { getGuessResult } from '../../lib/getGuessResult';
 
 describe('getGuessResult()', () => {
 	const secretCode = [0, 1, 2, 0];

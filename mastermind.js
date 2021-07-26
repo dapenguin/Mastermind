@@ -1,6 +1,6 @@
-const { getPegValueTotals } = require('./lib/getPegValueTotals');
-const { generateCode } = require('./lib/generateCode');
-const { getGuessResult } = require('./lib/getGuessResult');
+import { getPegValueTotals } from './lib/getPegValueTotals';
+import { generateCode } from './lib/generateCode';
+import { getGuessResult } from './lib/getGuessResult';
 
 const Mastermind = function () {
 	// The code the player has to crack

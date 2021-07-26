@@ -1,10 +1,11 @@
-const { expect } = require('chai');
-const { getPartialMatches } = require('../../lib/getPartialMatches');
-const {
+import { expect } from 'chai';
+
+import { getPartialMatches } from '../../lib/getPartialMatches';
+import {
 	_MATCHES_NONE_,
 	_MATCHES_PARTIAL_,
 	_MATCHES_EXACT_,
-} = require('../../lib/constants');
+} from '../../lib/constants';
 
 describe('getPartialMatches()', () => {
 	const secretCode = [0, 1, 2, 0];

@@ -1,6 +1,6 @@
-const { expect } = require('chai');
+import { expect } from 'chai';
 
-const Mastermind = require('../mastermind');
+import Mastermind from '../mastermind';
 
 describe('Creating a new game', () => {
 	const mm = new Mastermind();
