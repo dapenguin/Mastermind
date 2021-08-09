@@ -7,7 +7,6 @@ describe('getPegValueTotals()', () => {
 	const pegValueTotals = getPegValueTotals(secretCode, 5);
 
 	it('should return the correct totals for each peg value in the secret code', () => {
-		expect(pegValueTotals).to.be.an('array');
 		expect(pegValueTotals[1]).to.equal(2);
 		expect(pegValueTotals[2]).to.equal(1);
 		expect(pegValueTotals[4]).to.equal(2);

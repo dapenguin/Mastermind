@@ -18,14 +18,10 @@ describe('getGuessResult()', () => {
 		);
 
 		it('should return the total number of exact matches', () => {
-			expect(guessResults).to.have.property('totalExactMatches');
-			expect(guessResults.totalExactMatches).to.be.a('number');
 			expect(guessResults.totalExactMatches).to.equal(1);
 		});
 
 		it('should return the total number of partial matches', () => {
-			expect(guessResults).to.have.property('totalPartialMatches');
-			expect(guessResults.totalPartialMatches).to.be.a('number');
 			expect(guessResults.totalPartialMatches).to.equal(2);
 		});
 	});

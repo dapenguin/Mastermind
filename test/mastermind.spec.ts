@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import Mastermind from '../mastermind';
+import { Mastermind } from '../mastermind';
 
 describe('Creating a new game', () => {
 	const mm = new Mastermind();

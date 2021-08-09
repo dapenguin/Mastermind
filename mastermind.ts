@@ -1,10 +1,11 @@
 import { getPegValueTotals } from './lib/getPegValueTotals';
 import { generateCode } from './lib/generateCode';
 import { getGuessResult } from './lib/getGuessResult';
+import { Guess, GuessResult, PegValueTotals, SecretCode } from './lib/types';
 
-const Mastermind = function () {
+export const Mastermind = function (): void {
 	// The code the player has to crack
-	let _secretCode = [];
+	let _secretCode: SecretCode = [];
 
 	// Maximum number of tries
 	const _maxTries = 12;
@@ -19,45 +20,43 @@ const Mastermind = function () {
 	const _maxPegValue = 5;
 
 	// Total number of each peg value in the secret code
-	let _pegValueTotals = {};
+	let _pegValueTotals: PegValueTotals = [];
 
 	/**
 	 * Get the secret code. Useful for telling the player the code if they've lost.
-	 * @returns {Array} The secret code.
+	 * @returns The secret code.
 	 */
-	this.getSecretCode = () => _secretCode;
+	this.getSecretCode = (): SecretCode => _secretCode;
 
 	/**
 	 * Process the player's guess.
-	 * @param {Array} codeGuess An array containing the player's guess.
-	 * @returns {Object} Object containing the results of the player's guess.
+	 * @param codeGuess An array containing the player's guess.
+	 * @returns Object containing the results of the player's guess.
 	 */
-	this.guess = (codeGuess) => {
+	this.guess = (codeGuess: Guess): GuessResult => {
 		_triesLeft--;
-		const guessResult = getGuessResult(
+		return getGuessResult(
 			codeGuess,
 			_numberOfPegs,
 			_secretCode,
 			_pegValueTotals,
 			_triesLeft
 		);
-
-		return guessResult;
 	};
 
 	/**
 	 * Returns the number of tries the player has left to guess the code.
-	 * @return {Number} The number of tries the player has left.
+	 * @return The number of tries the player has left.
 	 */
-	this.getTriesLeft = () => _triesLeft;
+	this.getTriesLeft = (): number => _triesLeft;
 
 	/**
 	 * Start the game!
-	 * @param {Array} secretCode The secret code to play the game with. Mainly used
-	 *                           for debugging. If no secret code is provided, one
-	 *                           will be generated.
+	 * @param secretCode The secret code to play the game with. Mainly used for
+	 *                   debugging. If no secret code is provided, one will be
+	 *                   generated.
 	 */
-	this.start = (secretCode) => {
+	this.start = (secretCode?: SecretCode) => {
 		// Reset the number of tries left
 		_triesLeft = _maxTries;
 		// Generate the secret code
@@ -66,5 +65,3 @@ const Mastermind = function () {
 		_pegValueTotals = getPegValueTotals(_secretCode, _numberOfPegs);
 	};
 };
-
-module.exports = Mastermind;
