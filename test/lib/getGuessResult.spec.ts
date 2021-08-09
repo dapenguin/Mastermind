@@ -1,5 +1,6 @@
-const { expect } = require('chai');
-const { getGuessResult } = require('../../lib/getGuessResult');
+import { expect } from 'chai';
+
+import { getGuessResult } from '../../lib/getGuessResult';
 
 describe('getGuessResult()', () => {
 	const secretCode = [0, 1, 2, 0];
@@ -17,14 +18,10 @@ describe('getGuessResult()', () => {
 		);
 
 		it('should return the total number of exact matches', () => {
-			expect(guessResults).to.have.property('totalExactMatches');
-			expect(guessResults.totalExactMatches).to.be.a('number');
 			expect(guessResults.totalExactMatches).to.equal(1);
 		});
 
 		it('should return the total number of partial matches', () => {
-			expect(guessResults).to.have.property('totalPartialMatches');
-			expect(guessResults.totalPartialMatches).to.be.a('number');
 			expect(guessResults.totalPartialMatches).to.equal(2);
 		});
 	});

@@ -1,17 +1,27 @@
-const { incrementPegValueTotal } = require('./incrementPegValueTotal');
-const { _MATCHES_EXACT_, _MATCHES_NONE_ } = require('./constants');
+import { incrementPegValueTotal } from './incrementPegValueTotal';
+import { _MATCHES_EXACT_, _MATCHES_NONE_ } from './constants';
+import { Guess } from './types';
+
+export interface ExactMatchResults {
+	guessMatches: number[];
+	pegValueTotals: number[];
+	totalExactMatches: number;
+}
 
 /**
  * Find how many exact matches of both peg value and placement the player has
  * guessed.
- * @param  {Array}  codeGuess     An array containing the player's guess.
- * @param  {Number} numberOfPegs  The number of pegs that make up the code.
- * @param  {Array}  secretCode    The secret code the player is trying to crack.
- * @return {Object}               An object containing the matches, total of each
- *                                peg value, and total exact matches found in this
- *                                turn.
+ * @param  codeGuess     An array containing the player's guess.
+ * @param  numberOfPegs  The number of pegs that make up the code.
+ * @param  secretCode    The secret code the player is trying to crack.
+ * @return               An object containing the matches, total of each peg
+ *                       value, and total exact matches found in this turn.
  */
-function getExactMatches(codeGuess, numberOfPegs, secretCode) {
+export function getExactMatches(
+	codeGuess: Guess,
+	numberOfPegs: number,
+	secretCode: number[]
+): ExactMatchResults {
 	const guessMatches = [];
 	const guessedPegValueTotals = [];
 	let totalExactMatches = 0;
@@ -46,5 +56,3 @@ function getExactMatches(codeGuess, numberOfPegs, secretCode) {
 		totalExactMatches: totalExactMatches,
 	};
 }
-
-module.exports = { getExactMatches };

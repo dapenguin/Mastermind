@@ -6,9 +6,17 @@
     },
     "extends": [
         "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "ignorePatterns": [
+        "built"
+      ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
         "prettier"
     ],
-    "plugins": ["prettier"],
     "rules": {
         "no-var": [
             "error"

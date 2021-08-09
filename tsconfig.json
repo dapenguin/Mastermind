@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es2020",
+    "moduleResolution": "node"
+  },
+  "include": ["./*.{js|ts}", "./lib/**/*", "./test/**/*"]
+}
